@@ -1,0 +1,92 @@
+<!-- practice.html -->
+<!-- Goals:
+  - vat / vit / cit / dat / yit / dit
+  - ci" on attributes
+  - f< f> around tags
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Vim HTMX Kata</title>
+</head>
+
+<body>
+  <!-- DRILL 1: Tag contents (cit, vit, dat) -->
+  <div class="page-wrapper">
+    <header class="header">
+      <h1 class="title">Ship Daily Dashboard</h1>
+      <p class="subtitle">
+        Minimal stack. Ruthless shipping. No framework guilt.
+      </p>
+    </header>
+
+    <!-- DRILL 2: HTMX attributes (ci") -->
+    <main class="main">
+      <section class="panel" hx-get="/stats" hx-target="#stats" hx-trigger="load">
+        <h2>Stats</h2>
+        <div id="stats">
+          Loading...
+        </div>
+      </section>
+
+      <section class="panel" id="create-app-panel">
+        <h2>Create Micro-SaaS</h2>
+        <form id="create-app-form" hx-post="/apps" hx-target="#apps-list" hx-swap="beforeend">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="My tiny app" />
+          </label>
+
+          <label>
+            Stack
+            <select name="stack">
+              <option value="hono-htmx-sqlite">Hono + HTMX + SQLite</option>
+              <option value="express-react-postgres">Express + React + Postgres</option>
+              <option value="nextjs-prisma">Next.js + Prisma</option>
+            </select>
+          </label>
+
+          <button type="submit">
+            Ship it
+          </button>
+        </form>
+      </section>
+
+      <!-- DRILL 3: Nested tags -->
+      <section class="panel">
+        <h2>Apps</h2>
+        <ul id="apps-list">
+          <li class="app-item" data-id="1">
+            <span class="app-name">Inbox Cleaner</span>
+            <button class="danger" hx-delete="/apps/1" hx-target="closest li" hx-swap="outerHTML">
+              Delete
+            </button>
+          </li>
+          <li class="app-item" data-id="2">
+            <span class="app-name">Screenshot To PDF</span>
+            <button class="danger" hx-delete="/apps/2" hx-target="closest li" hx-swap="outerHTML">
+              Delete
+            </button>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- DRILL 4: Paragraph / ip / is -->
+    <footer class="footer">
+      <p>
+        Built with
+        <strong>Hono</strong>,
+        <strong>HTMX</strong>,
+        and
+        <strong>SQLite</strong>.
+        No Kubernetes, no drama.
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>
